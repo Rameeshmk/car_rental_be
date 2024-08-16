@@ -10,6 +10,7 @@ const checkUser = async (req, res) => {
 
   try {
     const user = req.user;
+  
     const findUser = await User.findOne({ email: user.data });
     if (!findUser) {
       return res.send("user not found");
@@ -31,7 +32,7 @@ const signup = async (req, res) => {
 
 
     if (userExist) {
-      return res.send("User is already exist");
+      return res.send("User is a already exist");
     }
 
     const saltRounds = 10;
@@ -53,7 +54,7 @@ const signup = async (req, res) => {
     const token = generateToken(email);
 
     res.cookie("token", token)
-    res.send("Signed successfully!");
+    res.send({message:"Signed successfully!"});
   } catch (error) {
     console.log(error, "Something wrong");
     res.status(500).send("Internal Server Error");
@@ -79,7 +80,7 @@ const signin = async (req, res) => {
 
     const token = generateToken(email);
     res.cookie("token", token);
-    res.send("Logged in!");
+    res.json({message:"Logged in!",token});
   } catch (error) {
     console.log(error, "Something wrong");
     res.status(500).send("Internal Server Error");

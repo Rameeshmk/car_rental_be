@@ -3,11 +3,12 @@ import bcrypt from "bcrypt"
 import adminToken from "../utils/adminToken.js";
 
 
+
 const checkAdmin = async (req, res) => {
 
   try {
     const dealer = req.user
-    const findDealer = await Dealer.findOne({ email: dealer.email });
+    const findDealer = await Dealer.findOne({ email: dealer.data });
 
     if (!findDealer) {
       return res.send("dealer not found");

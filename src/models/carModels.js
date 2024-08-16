@@ -2,18 +2,35 @@ import mongoose from "mongoose";
 
 const carSchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
       minLength: 3,
       maxLength: 30,
     
     },
-    description: {
+    make: {
       type: String,
       required: true,
       minLength: 3,
       maxLength: 50,
+    },
+    model: {
+      type: String,
+      required: true,
+      minLength: 3,
+      maxLength: 50,
+    },
+    fueltype: {
+      type: String,
+      required: true,
+      minLength: 3,
+      maxLength: 50,
+    },
+    
+    capacity: {
+      type: Number,
+      required: true,
     },
     price: {
       type: Number,
