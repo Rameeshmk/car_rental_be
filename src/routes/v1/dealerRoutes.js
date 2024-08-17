@@ -10,7 +10,7 @@ import authenticateAdmin from "../../middlewares/adminMiddleware.js"
 const dealerRouter=express.Router()
 
 dealerRouter.post("/signup",dealerController.singup)
-dealerRouter.post("/signin",authenticateDeal,dealerController.singin)
+dealerRouter.post("/signin",dealerController.singin)
 dealerRouter.delete("/delete-dealer/:id",dealerController.removeDealer)
 dealerRouter.get("/get-dealers",dealerController.getAllDealers)
 dealerRouter.get("/get-cars",carController.getCarData)
