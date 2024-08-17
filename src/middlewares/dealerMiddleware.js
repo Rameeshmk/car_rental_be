@@ -17,6 +17,7 @@ const authenticateDeal = (req,res,next)=>{
         }
 
         req.user=result;
+        console.log(req.user);
 
         next();
     });
