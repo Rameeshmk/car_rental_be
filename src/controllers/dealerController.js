@@ -3,6 +3,42 @@ import bcrypt from "bcrypt"
 import adminToken from "../utils/adminToken.js";
 
 
+
+
+const checkAdmins = async (req, res) => {
+  try {
+    const dealer = req.user;
+
+    
+    if (!dealer || !dealer.data) {
+      return res.status(400).send("Invalid dealer data");
+    }
+
+    
+    const findDealer = await Dealer.findOne({ email: dealer.data });
+
+    if (!findDealer) {
+      return res.status(404).send("Dealer not found");
+    }
+
+    
+    if (findDealer.role === 'admin') {
+      return res.send("Admin found");
+    } else {
+      return res.status(403).send("Dealer is not an admin");
+    }
+
+  } catch (error) {
+    console.error("Error checking admin:", error);
+    if (!res.headersSent) {
+      return res.status(500).send("Internal server error");
+    }
+  }
+}
+
+
+
+
 const singin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -12,7 +48,7 @@ const singin = async (req, res) => {
     const dealer = await Dealer.findOne({ email });
 
     if (!dealer) {
-      return res.status(404).send("User not found");
+      return res.status(404).send({message:"User not found"});
     }
 
     
@@ -150,6 +186,6 @@ const removeDealer = async (req, res) => {
   return res.send("removed sucessfully");
 };
 
-const dealerController = { singin, singup, getAllDealers, removeDealer,checkAdmin }
+const dealerController = { singin, singup, getAllDealers, removeDealer,checkAdmin,checkAdmins }
 
 export default dealerController

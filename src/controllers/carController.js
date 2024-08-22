@@ -78,22 +78,22 @@ import Dealer from "../models/dealerModel.js"
   
 
 
-  // In your carController.js
+  
 const getCarsData = async (req, res) => {
   try {
-    // Extract page and limit from query parameters
-    const page = parseInt(req.query.page) || 1; // Default to page 1
-    const limit = parseInt(req.query.limit) || 6; // Default to 10 items per page
+    
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 6; 
 
     const carsDetails = await Car.find()
       .skip((page - 1) * limit)
       .limit(limit);
 
-    const totalCars = await Car.countDocuments(); // Total number of cars in the database
+    const totalCars = await Car.countDocuments(); 
 
     return res.json({
       cars: carsDetails,
-      totalPages: Math.ceil(totalCars / limit), // Total number of pages
+      totalPages: Math.ceil(totalCars / limit), 
       currentPage: page
     });
   } catch (error) {
@@ -120,27 +120,62 @@ const getCarsData = async (req, res) => {
     }
   };
 
-  const updateCarData =async (req,res)=>{
 
+
+  const updateCarData = async (req, res) => {
     try {
-      const {id} = req.params
-      const {name,price,make,model,fueltype} = req.body
-      const updateCarData = await Car.findByIdAndUpdate(id,
-        {
-          name,
-          price,
-          make,
-          model,
-          fueltype,
-          capacity
-        },
-        { new: true}
+      const { id } = req.params; // Extract ID from params
+      const { name, price, make, model, fueltype, capacity } = req.body; // Extract data from body
+  
+      console.log("Request Body:", req.body);
+      console.log("Request Params ID:", id);
+  
+      // Find and update the car document in the database
+      const updatedCarData = await Car.findByIdAndUpdate(
+        id, // Find by ID
+        { name, price, make, model, fueltype, capacity }, // Data to update
+        { new: true, runValidators: true } // Return updated document and run validators
       );
-      return res.send(updateCarData)
+  
+      console.log("Updated Car Data:", updatedCarData);
+  
+      if (!updatedCarData) {
+        return res.status(404).send("Car not found");
+      }
+  
+      return res.status(200).json(updatedCarData); // Send updated document
     } catch (error) {
-      
+      console.error("Error updating car data:", error);
+      return res.status(500).send("Internal server error");
     }
-  }
+  };
+  
+
+  //const updateCarData =async (req,res)=>{
+
+   // try {
+     // const {id} = req.params.id;
+     // const {name,price,make,model,fueltype,capacity} = req.body;
+     // const updateCarData = await Car.findOneAndUpdate({_id:id},
+       // {
+       //   name,
+       //   price,
+       //   make,
+       //   model,
+       //   fueltype,
+       //   capacity
+       // },
+      //  { new: true}
+     // );
+     // console.log(updateCarData);
+     // if (!updateCarData) {
+      //  return res.send("Course is not updated");
+      //}
+     // return res.send(updateCarData)
+   // } catch (error) {
+      
+   // }
+ // }
 
   //const deleteCarData= async(req,res) =>{
     //try {

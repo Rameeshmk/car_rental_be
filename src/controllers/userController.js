@@ -13,7 +13,7 @@ const checkUser = async (req, res) => {
   
     const findUser = await User.findOne({ email: user.data });
     if (!findUser) {
-      return res.send("user not found");
+      return res.send({message:"user not found"});
     }
     return res.send("user found");
 
@@ -69,7 +69,7 @@ const signin = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.send("User not found");
+      return res.send({message:"User not found"});
     }
 
     const matchPassword = await bcrypt.compare(password, user.hashPassword);
@@ -80,7 +80,7 @@ const signin = async (req, res) => {
 
     const token = generateToken(email);
     res.cookie("token", token);
-    res.json({message:"Logged in!",token});
+    res.json({message:"Logged in!",token, userId: user._id});
   } catch (error) {
     console.log(error, "Something wrong");
     res.status(500).send("Internal Server Error");
