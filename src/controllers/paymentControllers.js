@@ -2,7 +2,7 @@
 // import dotenv from "dotenv";
 import crypto from "crypto";
 import razorpayInstance from "../config/payment.js";
-import Payment from "../Models/paymentModel.js";
+import Payment from "../models/paymentModel.js";
 
 // dotenv.config();
 
