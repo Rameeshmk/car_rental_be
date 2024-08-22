@@ -10,11 +10,11 @@ const app = express()
 app.use(
     cors(
         {
-    origin:"http://localhost:5173", 
+    origin:["https://car-rental-web-fe-new1-latest.vercel.app","http://localhost:5173"], 
     credentials : true,
 }
 )
-);
+); 
 app.use(express.json())
 app.use(cookieParser())
 
