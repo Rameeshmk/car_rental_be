@@ -1,5 +1,4 @@
 
-
 import express from 'express';
 const signOutRouter = express.Router();
 

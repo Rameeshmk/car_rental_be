@@ -1,8 +1,8 @@
 import express from "express";
 import { upload } from "../../middlewares/uploadMiddleware.js"
 import carController from "../../controllers/carController.js"
-import authenticateDeal from "../../middlewares/dealerMiddleware.js"
-import authenticateAdmin from "../../middlewares/adminMiddleware.js";
+//import authenticateDeal from "../../middlewares/dealerMiddleware.js"
+//import authenticateAdmin from "../../middlewares/adminMiddleware.js";
 
 const carRouter=express.Router()
 
