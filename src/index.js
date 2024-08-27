@@ -11,7 +11,7 @@ app.use(
     cors(
         {
     origin:["https://car-rental-web-fe-fnl-nu.vercel.app/","http://localhost:5173"], 
-    method:[GET, PUT,DELETE, POST],
+
 
     credentials : true,
 }
