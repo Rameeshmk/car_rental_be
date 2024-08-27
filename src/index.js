@@ -12,7 +12,8 @@ app.use(
         {
     origin:["https://car-rental-web-fe-new1-fnl.vercel.app/","http://localhost:5173"],
 
-
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials : true,
 }
 )
