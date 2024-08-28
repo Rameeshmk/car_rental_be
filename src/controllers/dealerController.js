@@ -60,13 +60,19 @@ const singin = async (req, res) => {
 
     
     const token = adminToken(dealer);
-
+    const  isProduction = process.env.NODE_ENV ==="production";
    
     const userRole = dealer.role; 
     console.log(userRole);
 
     
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { 
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true ,
+      secure: isProduction,
+      sameSite: isProduction ? "None": "Lax",
+    
+    });
     return res.json({ message: "Logged in!", token, userRole });
 
   } catch (error) {

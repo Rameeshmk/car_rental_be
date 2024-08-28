@@ -79,7 +79,15 @@ const signin = async (req, res) => {
     }
 
     const token = generateToken(email);
-    res.cookie("token", token);
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.cookie("token", token,{
+      maxAge:24 * 60 * 60 * 1000,
+      httpOnly:true,
+      secure: isProduction,
+      sameSite: isProduction ? "None" : "Lax",
+    });
+
     res.json({message:"Logged in!",token, userId: user._id});
   } catch (error) {
     console.log(error, "Something wrong");
