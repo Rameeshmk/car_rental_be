@@ -3,7 +3,7 @@ import serverConfig from "../config/serverConfig.js";
 
 
 function adminToken(user) {
-    return jwt.sign({data:user.email ,role : user.role}, serverConfig.token, { expiresIn: '1d' });
+    return jwt.sign({data:user.email ,role : user.role}, serverConfig.token, { expiresIn: 'session' });
   }
 
   export default adminToken
