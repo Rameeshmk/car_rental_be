@@ -4,7 +4,7 @@ const signOutRouter = express.Router();
 
 signOutRouter.post('/signout', (req, res) => {
   // Clear cookies
-  res.clearCookie('token', { path: '/' });
+  res.clearCookie('tokens', { path: '/' });
   res.clearCookie('refreshToken', { path: '/' });
 
   // Optionally, handle any server-side session or token invalidation here
