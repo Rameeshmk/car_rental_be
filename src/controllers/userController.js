@@ -81,12 +81,24 @@ const signin = async (req, res) => {
     const token = generateToken(email);
     const isProduction = process.env.NODE_ENV === "production";
 
-    res.cookie("token", token,{
+   {/*} res.cookie("token", token,{
     
       httpOnly:true,
       secure: isProduction,
       sameSite: isProduction ? "None" : "Lax",
+    });*/}
+
+
+
+    res.cookie("token", token, {
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
     });
+
+
+
 
     res.json({message:"Logged in!",token, userId: user._id});
   } catch (error) {
