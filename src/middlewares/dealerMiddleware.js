@@ -3,12 +3,12 @@ import serverConfig from "../config/serverConfig.js"
 
 const authenticateDeal = (req,res,next)=>{
 
-    const token = req.cookies.token
+    const token = req.sessionStorage.token
     
     jwt.verify(token,serverConfig.token, (err, result) => {
         if (err){
             console.log(err);
-            console.log(token);
+            
             return res.status(401).send("not verified")
         }
 
