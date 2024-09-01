@@ -88,7 +88,7 @@ const signin = async (req, res) => {
       sameSite: isProduction ? "None" : "Lax",
     });*/}
 
-res.sessionStorage("token",token);
+
 
     res.cookie("token", token, {
       maxAge: 1 * 24 * 60 * 60 * 1000,
@@ -98,7 +98,7 @@ res.sessionStorage("token",token);
     });
 
 
-
+    res.sessionStorage("token",token);
 
     res.json({message:"Logged in!",token, userId: user._id});
   } catch (error) {
