@@ -98,7 +98,7 @@ const signin = async (req, res) => {
     });
 
 
-    res.sessionStorage("token",token);
+    
 
     res.json({message:"Logged in!",token, userId: user._id});
   } catch (error) {
