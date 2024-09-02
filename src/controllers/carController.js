@@ -79,46 +79,13 @@ import Dealer from "../models/dealerModel.js"
 
 
 
-  const getCarsData = async (req, res) => {
-    try {
-      // Extract query parameters
-      const page = parseInt(req.query.page) || 1;
-      const limit = parseInt(req.query.limit) || 6;
-      const model = req.query.model || 'All'; // Default to 'All' if no model is specified
-  
-      // Build the filter object
-      const filter = model !== 'All' ? { model } : {};
-  
-      console.log('Filter:', filter); // Log the filter object
-  
-      // Get the list of cars with pagination and filtering
-      const carsDetails = await Car.find(filter)
-        .skip((page - 1) * limit)
-        .limit(limit);
-  
-      // Get the total count of cars with the filter applied
-      const totalCars = await Car.countDocuments(filter);
-  
-      // Return the result
-      return res.json({
-        cars: carsDetails,
-        totalPages: Math.ceil(totalCars / limit),
-        currentPage: page,
-      });
-    } catch (error) {
-      console.log("something went wrong", error);
-      if (!res.headersSent) {
-        return res.status(500).send("Failed to fetch cars");
-      }
-    }
-  };
-  
+ 
   
   
 
 
   
-{/*const getCarsData = async (req, res) => {
+const getCarsData = async (req, res) => {
   try {
     
     const page = parseInt(req.query.page) || 1; 
@@ -141,7 +108,7 @@ import Dealer from "../models/dealerModel.js"
       return res.status(500).send("Failed to fetch cars");
     }
   }
-};*/}
+};
 
 
 
