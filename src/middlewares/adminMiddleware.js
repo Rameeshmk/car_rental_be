@@ -3,10 +3,10 @@ import serverConfig from "../config/serverConfig.js"
 
 const authenticateAdmin = (req,res,next)=>{
 
-    const token = req.sessionStorage.token;
+    const token = req.cookies.token;
     if (!token) {
         return res.status(401).send("No token provided");
-    }
+
     jwt.verify(token,serverConfig.token, (err, result)=>{
         if (err){
             console.log(err);
