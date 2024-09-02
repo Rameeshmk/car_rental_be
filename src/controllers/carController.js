@@ -75,11 +75,47 @@ import Dealer from "../models/dealerModel.js"
       return res.status(500).json({ success: false, message: "Failed to fetch car" });
     }
   };
+
+
+
+
+  const getCarsData = async (req, res) => {
+    try {
+      // Extract query parameters
+      const page = parseInt(req.query.page) || 1; 
+      const limit = parseInt(req.query.limit) || 6; 
+      const category = req.query.category || 'All'; // Default to 'All' if no category is specified
+  
+      // Build the filter object
+      const filter = category !== 'All' ? { category } : {};
+  
+      // Get the list of cars with pagination and filtering
+      const carsDetails = await Car.find(filter)
+        .skip((page - 1) * limit)
+        .limit(limit);
+  
+      // Get the total count of cars with the filter applied
+      const totalCars = await Car.countDocuments(filter);
+  
+      // Return the result
+      return res.json({
+        cars: carsDetails,
+        totalPages: Math.ceil(totalCars / limit),
+        currentPage: page,
+      });
+    } catch (error) {
+      console.log("something went wrong", error);
+      if (!res.headersSent) {
+        return res.status(500).send("Failed to fetch cars");
+      }
+    }
+  };
+  
   
 
 
   
-const getCarsData = async (req, res) => {
+{/*const getCarsData = async (req, res) => {
   try {
     
     const page = parseInt(req.query.page) || 1; 
@@ -102,7 +138,7 @@ const getCarsData = async (req, res) => {
       return res.status(500).send("Failed to fetch cars");
     }
   }
-};
+};*/}
 
 
 
