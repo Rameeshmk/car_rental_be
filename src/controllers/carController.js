@@ -82,12 +82,14 @@ import Dealer from "../models/dealerModel.js"
   const getCarsData = async (req, res) => {
     try {
       // Extract query parameters
-      const page = parseInt(req.query.page) || 1; 
-      const limit = parseInt(req.query.limit) || 6; 
-      const category = req.query.category || 'All'; // Default to 'All' if no category is specified
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 6;
+      const model = req.query.model || 'All'; // Default to 'All' if no model is specified
   
       // Build the filter object
-      const filter = category !== 'All' ? { category } : {};
+      const filter = model !== 'All' ? { model } : {};
+  
+      console.log('Filter:', filter); // Log the filter object
   
       // Get the list of cars with pagination and filtering
       const carsDetails = await Car.find(filter)
@@ -110,6 +112,7 @@ import Dealer from "../models/dealerModel.js"
       }
     }
   };
+  
   
   
 
