@@ -7,7 +7,7 @@ const orderRoutes = express.Router()
 
 orderRoutes.post("/orders",orderController.saveOrderSummary)
 orderRoutes.get('/orders/:userId',orderController.getUserOrders);
-orderRoutes.get('/allorders/',orderController.getAllorders);
+orderRoutes.get('/allorders',orderController.getAllorders);
 orderRoutes.get("/check-availability/:car_id",orderController.checkAvailability)
 
 
