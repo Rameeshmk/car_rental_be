@@ -125,7 +125,7 @@ const getDealersOrders = async (req, res) => {
     }
 
     // Return the orders in the expected format
-    res.status(200).json({ data: orders });
+    res.status(200).json({ orders });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while fetching orders' });
