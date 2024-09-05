@@ -92,7 +92,7 @@ const getDealersOrders = async (req, res) => {
 
     
     if (!carId) {
-      return res.status(400).json({ error: 'User ID is required' });
+      return res.status(400).json({ error: 'car ID is required' });
     }
 
     // Fetch orders from the database where userId matches
@@ -101,7 +101,7 @@ const getDealersOrders = async (req, res) => {
     console.log("orders",orders)
 
     // Return the orders
-    res.status(200).json( orders);
+    res.status(200).json({ data:orders});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while fetching orders' });
