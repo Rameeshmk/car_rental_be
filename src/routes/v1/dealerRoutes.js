@@ -19,6 +19,8 @@ dealerRouter.put("/update-car/:id",carController.updateCarData)
 dealerRouter.delete("/delete-cars/:id",carController.deleteCarData)
 dealerRouter.get("/check-dealer", authenticateDeal, dealerController.checkAdmin )
 dealerRouter.get("/check-admin",authenticateAdmin,dealerController.checkAdmins)
+dealerRouter.get("/get-dealerscars/:id",authenticateDeal,dealerController.getDealersCars)
+
 
 
 

@@ -1,6 +1,8 @@
 import Dealer from "../models/dealerModel.js";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import adminToken from "../utils/adminToken.js";
+import Car from "../models/carModels.js";
+
 
 
 
@@ -73,7 +75,7 @@ const singin = async (req, res) => {
       sameSite: isProduction ? "None": "Lax",
     
     });
-    return res.json({ message: "Logged in!", token, userRole,dealerId: dealer._id });
+    return res.json({ message: "Logged in!", token, userRole, dealerId: dealer._id });
 
   } catch (error) {
     console.error("Error", error);
@@ -192,6 +194,32 @@ const removeDealer = async (req, res) => {
   return res.send("removed sucessfully");
 };
 
-const dealerController = { singin, singup, getAllDealers, removeDealer,checkAdmin,checkAdmins }
+
+const getDealersCars = async (req, res) => {
+  try {
+    const {dealerId} = req.params;
+
+    
+    if (!dealerId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    // Fetch orders from the database where userId matches
+    const orders = await Car.find({ dealerId });
+     
+    console.log("orders",orders)
+
+    // Return the orders
+    res.status(200).json( orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching orders' });
+  }
+};
+
+
+
+
+const dealerController = { singin, singup, getAllDealers, removeDealer,checkAdmin,checkAdmins,getDealersCars }
 
 export default dealerController
