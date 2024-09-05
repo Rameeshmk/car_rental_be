@@ -96,7 +96,7 @@ const getDealersOrders = async (req, res) => {
     }
 
     // Fetch orders from the database where userId matches
-    const orders = await Order.find({ car:carId });
+    const orders = await Order.find({car_id :carId });
      
     console.log("orders",orders)
 
