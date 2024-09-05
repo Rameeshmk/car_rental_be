@@ -205,7 +205,7 @@ const getDealersCars = async (req, res) => {
     }
 
    
-    const orders = await Car.find({ dealerId });
+    const orders = await Car.find({ dealer: dealerId});
      
     console.log("orders",orders)
 
