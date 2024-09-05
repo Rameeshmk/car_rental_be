@@ -117,7 +117,7 @@ const getDealersOrders = async (req, res) => {
     }
 
     // Fetch orders from the database where carId matches
-    const orders = await Order.find({ 'car._id': carId });
+    const orders = await Order.find({  carId });
 
     // Check if any orders were found
     if (orders.length === 0) {
