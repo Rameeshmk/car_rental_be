@@ -116,16 +116,14 @@ const getDealersOrders = async (req, res) => {
       return res.status(400).json({ error: 'Car ID is required' });
     }
 
-    // Fetch orders from the database where carId matches
-    const orders = await Order.find({  carId });
+    // Fetch orders where car references carId
+    const orders = await Order.find({ car: carId }).populate('car');
 
-    // Check if any orders were found
     if (orders.length === 0) {
       return res.status(404).json({ message: 'No orders found for this car' });
     }
 
-    // Return the orders in the expected format
-    res.status(200).json( orders );
+    res.status(200).json(orders);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while fetching orders' });
