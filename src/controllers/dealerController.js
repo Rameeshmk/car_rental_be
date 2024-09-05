@@ -1,8 +1,7 @@
 import Dealer from "../models/dealerModel.js";
 import bcrypt from "bcrypt";
 import adminToken from "../utils/adminToken.js";
-import Car from "../models/carModels.js"
-import mongoose from "mongoose";
+import Car from "../models/carModels.js";
 
 
 
@@ -205,8 +204,8 @@ const getDealersCars = async (req, res) => {
       return res.status(400).json({ error: 'dealer ID is required' });
     }
 
-    const dealerObjectId = mongoose.Types.ObjectId(dealerId);
-    const orders = await Car.find({ dealer: dealerObjectId});
+   
+    const orders = await Car.find({ dealer: dealerId});
      
     console.log("orders",orders)
 
