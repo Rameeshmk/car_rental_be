@@ -86,7 +86,7 @@ const checkAvailability = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching orders' });
   }
 };
-const getDealersOrders = async (req, res) => {
+{/*const getDealersOrders = async (req, res) => {
   try {
     const {car_id} = req.params;
 
@@ -106,7 +106,7 @@ const getDealersOrders = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while fetching orders' });
   }
-};
+};*/}
 
 
 
