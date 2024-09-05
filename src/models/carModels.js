@@ -39,7 +39,7 @@ const carSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    dealer: [{dealerId:{ type: mongoose.Types.ObjectId, ref: "dealer" }}],
+    dealer: [{ type: mongoose.Types.ObjectId, ref: "dealer" }],
   },
   { timestamps: true }
 );
