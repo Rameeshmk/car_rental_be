@@ -110,7 +110,7 @@ const checkAvailability = async (req, res) => {
 
 const getDealersOrders = async (req, res) => {
   try {
-    const { carId } = req.user;
+    const { carId } = req.body;
 
     if (!carId) {
       return res.status(400).json({ error: 'Car ID is required' });
