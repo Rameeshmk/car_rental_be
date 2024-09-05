@@ -201,7 +201,7 @@ const getDealersCars = async (req, res) => {
 
     
     if (!dealerId) {
-      return res.status(400).json({ error: 'User ID is required' });
+      return res.status(400).json({ error: 'dealer ID is required' });
     }
 
    
