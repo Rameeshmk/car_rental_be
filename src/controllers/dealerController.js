@@ -75,7 +75,7 @@ const singin = async (req, res) => {
       sameSite: isProduction ? "None": "Lax",
     
     });
-    return res.json({ message: "Logged in!", token, userRole, dealerId: dealer._id });
+    return res.json({ message: "Logged in!", token, userRole, dealerId: dealer[0] });
 
   } catch (error) {
     console.error("Error", error);
