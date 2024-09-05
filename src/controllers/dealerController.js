@@ -204,7 +204,7 @@ const getDealersCars = async (req, res) => {
       return res.status(400).json({ error: 'User ID is required' });
     }
 
-    // Fetch orders from the database where userId matches
+   
     const orders = await Car.find({ dealerId });
      
     console.log("orders",orders)
