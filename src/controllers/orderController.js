@@ -46,7 +46,7 @@ const getAllorders = async (req, res) => {
 // Function to get all orders for a specific user
  const getUserOrders = async (req, res) => {
   try {
-    const {userId} = req.params;
+    const {carId} = req.params;
 
     
     if (!userId) {
@@ -54,7 +54,7 @@ const getAllorders = async (req, res) => {
     }
 
     // Fetch orders from the database where userId matches
-    const orders = await Order.find({ userId });
+    const orders = await Order.find({ 'car._id': carId });
      
     console.log("orders",orders)
 
