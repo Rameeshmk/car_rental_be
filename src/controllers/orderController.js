@@ -116,8 +116,8 @@ const getDealersOrders = async (req, res) => {
       return res.status(400).json({ error: 'Car ID is required' });
     }
 
-    // Fetch orders where car references carId
-    const orders = await Order.find({ car: carId }).populate('car');
+    // Fetch orders where car._id matches carId
+    const orders = await Order.find({ 'car._id': carId });
 
     if (orders.length === 0) {
       return res.status(404).json({ message: 'No orders found for this car' });
