@@ -108,6 +108,30 @@ const checkAvailability = async (req, res) => {
   }
 };*/}
 
+const getDealersOrders = async (req, res) => {
+  try {
+    const { carId } = req.params;
+
+    if (!carId) {
+      return res.status(400).json({ error: 'Car ID is required' });
+    }
+
+    // Fetch orders from the database where carId matches
+    const orders = await Order.find({ carId });
+
+    // Check if any orders were found
+    if (orders.length === 0) {
+      return res.status(404).json({ message: 'No orders found for this car' });
+    }
+
+    // Return the orders in the expected format
+    res.status(200).json({ data: orders });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching orders' });
+  }
+};
+
 
 
 
