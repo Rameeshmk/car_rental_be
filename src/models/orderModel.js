@@ -10,7 +10,7 @@ const carSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
-  car: { type: carSchema, required: true },
+  car: { type: mongoose.Schema.Types.ObjectId, ref: 'Car', required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   totalDays: { type: Number, required: true },
