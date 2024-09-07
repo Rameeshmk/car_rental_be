@@ -119,7 +119,7 @@ const getDealersOrders = async (req, res) => {
     }
 
     // Fetch orders where car._id matches carId
-    const orders = await Order.find(carId );
+    const orders = await Order.find({carId} );
 
     if (orders.length === 0) {
       return res.status(404).json({ message: 'No orders found for this cars' });
