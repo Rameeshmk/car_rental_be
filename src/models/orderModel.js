@@ -7,6 +7,7 @@ const carSchema = new mongoose.Schema({
   capacity: { type: Number, required: true },
   fueltype: { type: String, required: true },
   image: { type: String, required: true } 
+  
 });
 
 const orderSchema = new mongoose.Schema({
