@@ -112,15 +112,15 @@ const checkAvailability = async (req, res) => {
 
 const getDealersOrders = async (req, res) => {
   try {
-    const {userId} = req.params;
+    const {carId} = req.params;
 
     
-    if (!userId) {
+    if (!carId) {
       return res.status(400).json({ error: 'User ID is required' });
     }
 
     // Fetch orders from the database where userId matches
-    const orders = await Order.find({ userId });
+    const orders = await Order.find({ carId });
      
     console.log("orders",orders)
 
