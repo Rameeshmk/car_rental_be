@@ -71,11 +71,11 @@ const getUserOrders = async (req, res) => {
 
 const checkAvailability = async (req, res) => {
   try {
-    const { car_id } = req.params;
+    const { carId } = req.params;
   
 
     //Find overlapping bookings
-    const orders = await Order.findById({car_id});
+    const orders = await Order.findById({carId});
     console.log("ored",orders);
     
     if(!orders){
@@ -119,7 +119,7 @@ const getDealersOrders = async (req, res) => {
     }
 
     // Fetch orders where car._id matches carId
-    const orders = await Order.find({ carId });
+    const orders = await Order.find({ carId:carId });
 
     if (orders.length === 0) {
       return res.status(404).json({ message: 'No orders found for this cars' });
