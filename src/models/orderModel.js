@@ -7,7 +7,6 @@ const carSchema = new mongoose.Schema({
   capacity: { type: Number, required: true },
   fueltype: { type: String, required: true },
   image: { type: String, required: true } 
-  
 });
 
 const orderSchema = new mongoose.Schema({
@@ -19,6 +18,7 @@ const orderSchema = new mongoose.Schema({
   totalAmount: { type: Number, required: true },
   pickupLocation: { type: String, required: true },
   userId:{type: String, required: true},
+  carId:{type: String, required: true},
  
 });
 
