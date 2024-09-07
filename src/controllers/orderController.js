@@ -11,7 +11,8 @@ const saveOrderSummary = async (req, res) => {
       rentPerDay,
       totalAmount,
       pickupLocation,
-      userId
+      userId,
+      carId
     } = req.body;
 
     // Create a new Order instance with the received data
@@ -23,7 +24,8 @@ const saveOrderSummary = async (req, res) => {
       rentPerDay,
       totalAmount,
       pickupLocation,
-      userId
+      userId,
+      carId
     });
 
     // Save the new order to the database
