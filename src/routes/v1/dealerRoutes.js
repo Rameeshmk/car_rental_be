@@ -22,7 +22,7 @@ dealerRouter.get("/check-dealer", authenticateDeal, dealerController.checkAdmin 
 dealerRouter.get("/check-admin",authenticateAdmin,dealerController.checkAdmins)
 dealerRouter.get("/get-dealerscars/:dealerId",dealerController.getDealersCars)
 dealerRouter.get("/notifications",authenticateAdmin,notificationsController.notification)
-dealerRouter.get("/approve-dealer/:id",authenticateAdmin,notificationsController.approve)
+dealerRouter.get("/approve-dealer/:dealerId",authenticateAdmin,notificationsController.approve)
 
 
 
