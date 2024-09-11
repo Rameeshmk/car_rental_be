@@ -22,7 +22,7 @@ const notification = async (req, res) => {
 const approve = async (req, res) => {
   try {
     const { id } = req.params;
-    const dealer = await Dealer.findById(id);
+    const dealer = await Dealer.find(id);
 
     if (!dealer) {
       return res.status(404).send("Dealer not found");
