@@ -21,6 +21,10 @@ const dealerSchema = new mongoose.Schema(
       required: true,
       minLength: 6,
     },
+    isApproved: {
+      type: Boolean,
+      default: false,  // New dealers will be pending approval by default
+    },
     cars: [{ type: mongoose.Types.ObjectId, ref: "cars" }],
   },
   { timestamps: true }

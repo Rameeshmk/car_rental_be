@@ -127,6 +127,7 @@ const singup = async (req, res) => {
       email,
       hashPassword,
       role: "dealer",
+      isApproved: false,
     });
     const newDealerCreated = await newDealer.save();
 
@@ -136,7 +137,7 @@ const singup = async (req, res) => {
 
     const token = adminToken(newDealerCreated);
     res.cookie("token", token);
-    res.json({ message: "signned in!", token });
+    res.json({ message: "Signup successful, awaiting admin approval!", token });
   } catch (error) {
     console.log(error, "Something wrong");
   }
