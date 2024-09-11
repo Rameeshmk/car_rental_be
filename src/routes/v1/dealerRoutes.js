@@ -5,7 +5,7 @@ import authenticateDeal from "../../middlewares/dealerMiddleware.js"
 import Dealer from "../../models/dealerModel.js"
 import carController from "../../controllers/carController.js";
 import authenticateAdmin from "../../middlewares/adminMiddleware.js"
-import notificationsController from "../../controllers/notificationsController.js"
+import notificationController from "../../controllers/notificationsController.js"
 
 
 const dealerRouter=express.Router()
@@ -21,8 +21,8 @@ dealerRouter.delete("/delete-cars/:id",carController.deleteCarData)
 dealerRouter.get("/check-dealer", authenticateDeal, dealerController.checkAdmin )
 dealerRouter.get("/check-admin",authenticateAdmin,dealerController.checkAdmins)
 dealerRouter.get("/get-dealerscars/:dealerId",dealerController.getDealersCars)
-dealerRouter.get("/notifications",authenticateAdmin,notificationsController.notification)
-dealerRouter.get("/approve-dealer/:dealerId",authenticateAdmin,notificationsController.approve)
+dealerRouter.get("/notifications",authenticateAdmin,notificationController.notification)
+dealerRouter.get("/approve-dealer/:id",authenticateAdmin,notificationController.approve)
 
 
 
