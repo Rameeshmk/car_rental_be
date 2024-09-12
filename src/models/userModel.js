@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     required: true,
     minLength:10,
     maxLength: 10,
-    match: /^[0-9]{10}$/,
+    
   },
 
     cars: [{ type: mongoose.Types.ObjectId, ref: "Car" }],
