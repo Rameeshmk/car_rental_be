@@ -19,6 +19,7 @@ const orderSchema = new mongoose.Schema({
   pickupLocation: { type: String, required: true },
   userId:{type: String, required: true},
   carId:{type: String, required: true},
+  mobile:{type: String, required: true},
  
 });
 
