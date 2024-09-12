@@ -24,7 +24,7 @@ const checkUser = async (req, res) => {
 
 const signup = async (req, res) => {
   try {
-    const { email, password, firstName, lastName } = req.body
+    const { email, password, firstName, lastName,mobile } = req.body
     console.log(email);
 
     const userExist = await User.findOne({ email });
@@ -43,6 +43,7 @@ const signup = async (req, res) => {
       firstName,
       lastName,
       hashPassword,
+      mobile,
     });
 
     const newUserCreated = await newUser.save();

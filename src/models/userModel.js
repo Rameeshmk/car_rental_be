@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema(
       required: true,
       maxLength: 50,
     },
+
+  mobile: {
+    type: Number,
+    required: true,
+    minLength:10,
+    maxLength: 10,
+  },
+
     cars: [{ type: mongoose.Types.ObjectId, ref: "Car" }],
   },
   { timestamps: true }
