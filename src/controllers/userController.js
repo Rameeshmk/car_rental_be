@@ -101,7 +101,7 @@ const signin = async (req, res) => {
 
     
 
-    res.json({message:"Logged in!",token, userId: user._id});
+    res.json({message:"Logged in!",token, userId: user._id,mobile:user.mobile});
   } catch (error) {
     console.log(error, "Something wrong");
     res.status(500).send("Internal Server Error");
