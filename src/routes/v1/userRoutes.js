@@ -10,6 +10,8 @@ userRouter.post("/signup",userController.signup)
 
 userRouter.post("/signin",userController.signin) 
 
+userRouter.get("/get-user/:userId",userController.getUser)  
+
 userRouter.get("/check-user",authenticateUser, userController.checkUser)
 
 
