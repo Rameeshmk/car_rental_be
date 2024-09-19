@@ -109,26 +109,25 @@ const signin = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  try {
-    const {userId} = req.params;
-
-    
-    if (!userId) {
-      return res.status(400).json({ error: 'User ID is required' });
+ 
+ 
+    try {
+      const { id } = req.params; 
+  
+  
+      const user = await User.findById(id);
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: "Car not found" });
+      }
+  
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error("Error fetching car by ID:", error);
+      return res.status(500).json({ success: false, message: "Failed to fetch user" });
     }
+  };
 
-    // Fetch orders from the database where userId matches
-    const user = await User.find({ userId });
-     
-    console.log("user",user)
-
-    // Return the orders
-    res.status(200).json( user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while fetching orders' });
-  }
-};
 
 
 
