@@ -12,9 +12,9 @@ import Review from "../models/reviewModel.js"
 
 // Create a new review
 const createReview = async (req, res) => {
-  const { username, rating, comment } = req.body;
+  const { username,lname, rating, comment } = req.body;
   try {
-    const review = new Review({ username, rating, comment });
+    const review = new Review({ username,lname, rating, comment });
     await review.save();
     console.log("review",review);
     res.status(201).json(review);
